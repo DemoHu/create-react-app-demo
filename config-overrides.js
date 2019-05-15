@@ -14,5 +14,15 @@ module.exports = override(
   addWebpackAlias({
     '@': resolve('src')
   }),
-  useEslintRc()
+  useEslintRc(),
+  (config) => {
+    config.module.rules.push({
+      loader: 'webpack-ant-icon-loader',
+      enforce: 'pre',
+      include: [
+        path.resolve('node_modules/@ant-design/icons/lib/dist')
+      ]
+    });
+    return config;
+  },
 )
